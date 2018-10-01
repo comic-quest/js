@@ -62,6 +62,84 @@ function loadimg(){
            
 }
 
+video.addEventListener("canplaythrough",function(){
+    
+     setTimeout(function(){
+     isloaded=true;
+     cancelAnimationFrame(reqanim);
+
+     if(window.tween1){
+         
+         
+         //tween1.kill();
+         
+     }
+    
+    
+    if(!video.paused){
+       
+       return
+        
+       }
+    
+  
+      
+       ctx.clearRect(0,0,canvas.width,canvas.height)
+       
+       ctx.fillText("Haz click para comenzar.",25,230)
+       
+       canvas.onclick= function(){
+           canvas.onclick=function(){};
+           ctx.clearRect(0,0,canvas.width,canvas.height)
+           
+           video.play();
+           
+           video.onended=function(){
+               
+               ctx.save();
+               ctx.scale(0.5,0.5);
+               
+               ctx.drawImage(startagain,canvas.width-40,canvas.height-35)
+               
+               ctx.restore();
+               canvas.onclick=function(){
+                   
+                   video.play();
+                   
+                     ctx.save();
+               ctx.scale(0.5,0.5);
+               
+               ctx.clearRect(0,0,canvas.width,canvas.height)
+               
+               ctx.restore();
+                   
+                   
+                   
+               }
+               
+           }
+           
+           
+       }
+       
+       
+       
+      
+
+
+     },3000)
+
+    
+     
+     
+     
+     
+     
+  
+     
+
+});
+
 var sword1 = {degrees:0}
 
 
@@ -188,7 +266,7 @@ ctx.translate(7, 62);
  
  
 // rotate around this point
-ctx.rotate((sword1.degrees-90)*Math.PI/180); 
+ctx.rotate((sword1.degrees*Math.PI/180)-90); 
  
 // then draw the image back and up
                 
@@ -285,83 +363,7 @@ var startagain = new Image();
                        }
 
 
-video.addEventListener("canplaythrough",function(){
-    
-     setTimeout(function(){
-     isloaded=true;
-     cancelAnimationFrame(reqanim);
 
-     if(window.tween1){
-         
-         
-         //tween1.kill();
-         
-     }
-    
-    
-    if(!video.paused){
-       
-       return
-        
-       }
-    
-  
-      
-       ctx.clearRect(0,0,canvas.width,canvas.height)
-       
-       ctx.fillText("Haz click para comenzar.",25,230)
-       
-       canvas.onclick= function(){
-           canvas.onclick=function(){};
-           ctx.clearRect(0,0,canvas.width,canvas.height)
-           
-           video.play();
-           
-           video.onended=function(){
-               
-               ctx.save();
-               ctx.scale(0.5,0.5);
-               
-               ctx.drawImage(startagain,canvas.width-40,canvas.height-35)
-               
-               ctx.restore();
-               canvas.onclick=function(){
-                   
-                   video.play();
-                   
-                     ctx.save();
-               ctx.scale(0.5,0.5);
-               
-               ctx.clearRect(0,0,canvas.width,canvas.height)
-               
-               ctx.restore();
-                   
-                   
-                   
-               }
-               
-           }
-           
-           
-       }
-       
-       
-       
-      
-
-
-     },3000)
-
-    
-     
-     
-     
-     
-     
-  
-     
-
-});
                        
                        
 
