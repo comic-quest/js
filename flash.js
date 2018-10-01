@@ -15,7 +15,7 @@
 
 //https://raw.githack.com/comic-quest/flash/gh-pages/script.js
 
-
+//https://cdn.rawgit.com/comic-quest/js/d6ea596f/flash.js
 
 (function() {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -182,7 +182,6 @@ reqanim = requestAnimationFrame(main);
     
   var date = new Date()
   
-  var newloadingsecondtime = date.getTime();
   
   var newloadingsecond = Math.floor(date.getTime()/1000);
   
@@ -194,10 +193,11 @@ reqanim = requestAnimationFrame(main);
      
      
       
-     }else if(Math.floor((newloadingsecondtime-loadingsecondtime)/1000)<2){
+     }else{
+         
+         
          
          loadingsecond=newloadingsecond;
-         loadingsecondtime=newloadingsecondtime;
          
          var newDegree;
          
@@ -335,14 +335,6 @@ ctx.restore();
         
         tween1.play();
          
-         
-         
-     }else{
-         
-          loadingsecond=newloadingsecond;
-         loadingsecondtime=newloadingsecondtime;
-         
-         sword1.degrees=map(new Date().getUTCSeconds(),0,60,0,360);
          
          
      }
