@@ -44,11 +44,21 @@ var loadingtext = "Cargando";
 
 var loadingsecond;
 
+var loadingsecondtime;
+
 var isloaded=false;
+
+var showLoading=true;
+
+var showStart=false;
 
 ctx.font='50px Arial';
 
 ctx.fillStyle="white";
+
+var startagain = new Image();
+    
+    startagain.src = "https://www.dropbox.com/s/mspqrx6jcmusjp1/startagain.png?raw=1"
 
 function loadimg(){
 
@@ -65,9 +75,8 @@ function loadimg(){
 video.addEventListener("canplaythrough",function(){
     
      setTimeout(function(){
-     isloaded=true;
-     cancelAnimationFrame(reqanim);
-
+     showLoading=false;
+     showStart=true;
      if(window.tween1){
          
          
@@ -84,35 +93,35 @@ video.addEventListener("canplaythrough",function(){
     
   
       
-       ctx.clearRect(0,0,canvas.width,canvas.height)
-       
-       ctx.fillText("Haz click para comenzar.",25,230)
+      
        
        canvas.onclick= function(){
            canvas.onclick=function(){};
+           showStart=false;
+           isloaded=true;
+          
+           cancelAnimationFrame(reqanim)
+           
            ctx.clearRect(0,0,canvas.width,canvas.height)
            
            video.play();
            
            video.onended=function(){
                
-               ctx.save();
-               ctx.scale(0.5,0.5);
+               
+               
                
                ctx.drawImage(startagain,canvas.width-40,canvas.height-35)
                
-               ctx.restore();
+               
                canvas.onclick=function(){
-                   
+                   canvas.onclick=function(){}
                    video.play();
                    
-                     ctx.save();
-               ctx.scale(0.5,0.5);
+                
                
                ctx.clearRect(0,0,canvas.width,canvas.height)
                
-               ctx.restore();
-                   
                    
                    
                }
@@ -140,6 +149,9 @@ video.addEventListener("canplaythrough",function(){
 
 });
 
+video.src = "https://github.com/comic-quest/flash/blob/gh-pages/flash.mp4?raw=true";
+
+
 var sword1 = {degrees:0}
 
 
@@ -165,11 +177,16 @@ var sword2 = {degrees:0}
 
 
 function main(){
+
 reqanim = requestAnimationFrame(main);
     
   var date = new Date()
   
-  var newloadingsecond = Math.floor(date.getTime()/1000)
+  var newloadingsecondtime = date.getTime();
+  
+  var newloadingsecond = Math.floor(date.getTime()/1000);
+  
+  
   
 
   
@@ -177,9 +194,10 @@ reqanim = requestAnimationFrame(main);
      
      
       
-     }else{
+     }else if(Math.floor((newloadingsecondtime-loadingsecondtime)/1000)<2){
          
          loadingsecond=newloadingsecond;
+         loadingsecondtime=newloadingsecondtime;
          
          var newDegree;
          
@@ -278,8 +296,19 @@ ctx.drawImage(sword1.img, -7, -62);
 // and restore the co-ordinate system to its default
 // top left origin with no rotation
 ctx.restore();
-                ctx.font="50px Arial"
+                
+                if(showLoading){
+                    ctx.font="50px Arial"
                 ctx.fillText("Cargando.",200,70);
+                   }
+                
+                if(showStart){
+                   
+                    ctx.font="50px Arial"
+                ctx.fillText("Haz click para comenzar.",30,420);
+                   
+                   }
+               
                 
                 
                 
@@ -306,6 +335,14 @@ ctx.restore();
         
         tween1.play();
          
+         
+         
+     }else{
+         
+          loadingsecond=newloadingsecond;
+         loadingsecondtime=newloadingsecondtime;
+         
+         sword1.degrees=map(new Date().getUTCSeconds(),0,60,0,360);
          
          
      }
@@ -353,14 +390,14 @@ var loading = setInterval(isloading,500)
 window.onload = function(){
     
 
-var startagain = new Image();
-    
-    startagain.src = "https://www.dropbox.com/s/mspqrx6jcmusjp1/startagain.png?raw=1"
+}
+
+
 
 
     
                        
-                       }
+                       
 
 
 
