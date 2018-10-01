@@ -188,7 +188,7 @@ ctx.translate(7, 62);
  
  
 // rotate around this point
-ctx.rotate(((sword1.degrees-90)*Math.PI/180); 
+ctx.rotate((sword1.degrees-90)*Math.PI/180); 
  
 // then draw the image back and up
                 
