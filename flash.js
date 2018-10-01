@@ -105,15 +105,15 @@ reqanim = requestAnimationFrame(main);
          
          var newDegree;
          
-         if((sword1.degrees)-90>=360){
+         if((sword1.degrees)>=360){
             
              sword1.degrees=sword1.degrees-360
-            newDegree= Math.floor(map(date.getUTCSeconds(),0,60,0,360))-90
+            newDegree= Math.floor(map(date.getUTCSeconds(),0,60,0,360))
             
             }else{
                 
                 
-            newDegree = Math.floor(map(date.getUTCSeconds(),0,60,0,360))-90
+            newDegree = Math.floor(map(date.getUTCSeconds(),0,60,0,360))
          
         
          
@@ -188,7 +188,7 @@ ctx.translate(7, 62);
  
  
 // rotate around this point
-ctx.rotate(sword1.degrees*Math.PI/180); 
+ctx.rotate(((sword1.degrees-90)*Math.PI/180); 
  
 // then draw the image back and up
                 
