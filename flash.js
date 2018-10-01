@@ -105,15 +105,15 @@ reqanim = requestAnimationFrame(main);
          
          var newDegree;
          
-         if(sword1.degrees>=360){
+         if((sword1.degrees)-90>=360){
             
              sword1.degrees=sword1.degrees-360
-            newDegree= Math.floor(map(date.getUTCSeconds(),0,60,0,360))
+            newDegree= Math.floor(map(date.getUTCSeconds(),0,60,0,360))-90
             
             }else{
                 
                 
-            newDegree = Math.floor(map(date.getUTCSeconds(),0,60,0,360))
+            newDegree = Math.floor(map(date.getUTCSeconds(),0,60,0,360))-90
          
         
          
@@ -129,7 +129,7 @@ reqanim = requestAnimationFrame(main);
          
 
          
-        var tween1 = TweenMax.to(sword1, 0.5, { degrees: newDegree-90,onUpdate:function(){
+        var tween1 = TweenMax.to(sword1, 0.5, { degrees: newDegree,onUpdate:function(){
          
             
             
