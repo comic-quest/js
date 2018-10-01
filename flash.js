@@ -1,4 +1,3 @@
-
 //
 
 //https://www.dropbox.com/s/qm6mynnfsqk5aer/flash.mp4?raw=1
@@ -15,7 +14,7 @@
 
 //https://raw.githack.com/comic-quest/flash/gh-pages/script.js
 
-//https://cdn.rawgit.com/comic-quest/js/d6ea596f/flash.js
+
 
 (function() {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -182,6 +181,7 @@ reqanim = requestAnimationFrame(main);
     
   var date = new Date()
   
+  var newloadingsecondtime = date.getTime();
   
   var newloadingsecond = Math.floor(date.getTime()/1000);
   
@@ -193,11 +193,10 @@ reqanim = requestAnimationFrame(main);
      
      
       
-     }else{
-         
-         
+     }else if(Math.floor((newloadingsecondtime-loadingsecondtime)/1000)<2){
          
          loadingsecond=newloadingsecond;
+         loadingsecondtime=newloadingsecondtime;
          
          var newDegree;
          
@@ -241,7 +240,6 @@ reqanim = requestAnimationFrame(main);
             
             ctx.translate(0,23) 
 ctx.drawImage(sword1.img,100,90);
-
              
             
             ctx.restore();
@@ -337,6 +335,18 @@ ctx.restore();
          
          
          
+     }else{
+         
+          loadingsecond=newloadingsecond;
+         loadingsecondtime=newloadingsecondtime;
+         
+         TweenMax.pauseAll();
+         TweenMax.killAll();
+         
+         sword1.degrees=map(new Date().getUTCSeconds(),0,60,0,360);
+         
+         
+         
      }
     
     
@@ -372,7 +382,6 @@ var isloading = function(){
     
     
 }
-
 isloading();
 var loading = setInterval(isloading,500)
 */
@@ -399,6 +408,3 @@ window.onload = function(){
 function map (num, in_min, in_max, out_min, out_max) {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-
-
-
